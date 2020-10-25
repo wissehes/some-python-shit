@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Controls</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+</head>
+
+<body>
+    <section class="section">
+        <div class="container center">
+            <h1 class="title">
+                Toggle lights
+            </h1>
+            <div class="columns">
+                {% for device in devices %}
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                {{device.name}}
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p>
+                                    <b>Status:</b> {{ device.state }}
+                                </p>
+                                <p>
+                                    <b>IP Address:</b> {{ device.address }}
+                                </p>
+                                <p>
+                                    <b>Type:</b> {{ device.sysinfo.dev_name }}
+                                </p>
+                            </div>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="/device/{{ device.name }}/on?redirect=/" class="card-footer-item">
+                                On
+                            </a>
+                            <a href="/device/{{ device.name }}/off?redirect=/" class="card-footer-item">
+                                Off
+                            </a>
+                        </footer>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
